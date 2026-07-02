@@ -1,17 +1,108 @@
 ---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Button from "../components/Button.astro";
+import Container from "../components/Container.astro";
 
+const features = [
+  {
+    title: "Smart Learning",
+    description: "Focus each session on the words, patterns, and habits that move your learning forward.",
+    icon: "spark",
+  },
+  {
+    title: "Progress Tracking",
+    description: "See what you have practiced, where you are improving, and what to review next.",
+    icon: "chart",
+  },
+  {
+    title: "Personalized Study",
+    description: "Shape your study path around your goals, pace, and confidence level.",
+    icon: "path",
+  },
+];
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>iMANABU | Learn Japanese & English Online</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout
+  title="iManabu - Learn Smarter"
+  description="iManabu helps learners study smarter with simple and effective tools."
+>
+  <section class="home-hero" aria-labelledby="hero-title">
+    <Container class="home-hero-grid" size="wide">
+      <div class="hero-copy">
+        <p class="eyebrow">iManabu</p>
+        <h1 id="hero-title">Learn smarter with a calmer way to study.</h1>
+        <p class="hero-lede">
+          iManabu helps learners build steady language habits with clear guidance,
+          focused practice, and simple tools that make progress easier to see.
+        </p>
+        <div class="hero-actions" aria-label="Homepage actions">
+          <Button href="/contact/">Book a trial lesson</Button>
+          <Button href="/courses/" variant="secondary">View courses</Button>
+        </div>
+      </div>
+
+      <div class="hero-visual" aria-label="Future iManabu app preview">
+        <div class="mockup-window">
+          <div class="mockup-bar" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <div class="mockup-body">
+            <div class="mockup-panel mockup-panel-main">
+              <div class="mockup-label">Today</div>
+              <div class="mockup-title">Study plan</div>
+              <div class="mockup-line mockup-line-wide"></div>
+              <div class="mockup-line"></div>
+            </div>
+            <div class="mockup-grid">
+              <div class="mockup-card">
+                <div class="mockup-stat">72%</div>
+                <div class="mockup-caption">Weekly progress</div>
+              </div>
+              <div class="mockup-card">
+                <div class="mockup-stat">18</div>
+                <div class="mockup-caption">Words reviewed</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <section class="feature-preview" aria-labelledby="features-title">
+    <Container>
+      <div class="section-heading">
+        <p class="eyebrow">Study tools</p>
+        <h2 id="features-title">Simple support for better learning habits.</h2>
+      </div>
+
+      <div class="feature-grid">
+        {features.map((feature) => (
+          <article class="feature-card">
+            <div class:list={["feature-icon", `feature-icon-${feature.icon}`]} aria-hidden="true">
+              {feature.icon === "spark" && (
+                <svg viewBox="0 0 24 24" focusable="false">
+                  <path d="M12 3l1.8 5.1L19 10l-5.2 1.9L12 17l-1.8-5.1L5 10l5.2-1.9L12 3Z" />
+                </svg>
+              )}
+              {feature.icon === "chart" && (
+                <svg viewBox="0 0 24 24" focusable="false">
+                  <path d="M5 19V5h2v14H5Zm6 0V9h2v10h-2Zm6 0v-6h2v6h-2Z" />
+                </svg>
+              )}
+              {feature.icon === "path" && (
+                <svg viewBox="0 0 24 24" focusable="false">
+                  <path d="M7 6a3 3 0 1 1 2.8 4H9a3 3 0 0 0 0 6h6.2a3 3 0 1 1 0 2H9a5 5 0 0 1 0-10h.8A3 3 0 0 1 7 6Zm0-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2Zm10 12a1 1 0 1 0 0 2 1 1 0 0 0 0-2Z" />
+                </svg>
+              )}
+            </div>
+            <h3>{feature.title}</h3>
+            <p>{feature.description}</p>
+          </article>
+        ))}
+      </div>
+    </Container>
+  </section>
+</BaseLayout>

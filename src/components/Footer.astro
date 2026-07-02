@@ -1,0 +1,30 @@
+---
+import Container from "./Container.astro";
+
+const footerLinks = [
+  { label: "Courses", href: "/courses/" },
+  { label: "About", href: "/about/" },
+  { label: "Contact", href: "/contact/" },
+];
+
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <Container class="footer-shell">
+    <div class="footer-brand">
+      <a class="brand" href="/" aria-label="iManabu home">
+        <img class="brand-logo brand-logo-footer" src="/images/logo2.svg" alt="iManabu" width="1500" height="1500" />
+      </a>
+      <p>Clear, confident language learning for curious students and families.</p>
+    </div>
+
+    <nav class="footer-nav" aria-label="Footer navigation">
+      {footerLinks.map((link) => (
+        <a href={link.href}>{link.label}</a>
+      ))}
+    </nav>
+
+    <p class="footer-meta">&copy; {year} iManabu. All rights reserved.</p>
+  </Container>
+</footer>

@@ -1,0 +1,32 @@
+---
+import Button from "./Button.astro";
+import Container from "./Container.astro";
+
+const navItems = [
+  { label: "Courses", href: "/courses/" },
+  { label: "About", href: "/about/" },
+  { label: "Pricing", href: "/pricing/" },
+  { label: "FAQ", href: "/faq/" },
+  { label: "Contact", href: "/contact/" },
+];
+---
+
+<header class="site-header">
+  <Container class="header-shell">
+    <a class="brand" href="/" aria-label="iManabu home">
+      <img class="brand-logo brand-logo-header" src="/images/logo2.svg" alt="iManabu" width="1500" height="1500" />
+    </a>
+
+    <nav class="site-nav" aria-label="Primary navigation">
+      <ul class="nav-list">
+        {navItems.map((item) => (
+          <li>
+            <a href={item.href}>{item.label}</a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <Button class="header-action" href="/contact/" size="sm">Book a trial</Button>
+  </Container>
+</header>
