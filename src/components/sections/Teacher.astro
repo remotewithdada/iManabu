@@ -1,0 +1,25 @@
+---
+import Container from "../Container.astro";
+import { business } from "../../data/business";
+
+const { teacher } = business.images;
+---
+
+<section class="section teacher-section" aria-labelledby="teacher-title">
+  <Container>
+    <div class="teacher-grid">
+      <img class="teacher-portrait" src={teacher.src} alt={teacher.alt} width={teacher.width} height={teacher.height} />
+      <div>
+        <p class="eyebrow">Meet your teacher</p>
+        <h2 id="teacher-title">Learn from someone who understands the journey.</h2>
+        <p class="lead">With a Japanese-Filipino background and experience studying and living between Japan and the Philippines, Teacher Hidemi understands both the language and the adjustment behind learning it.</p>
+        <ul class="check-list">
+          <li>Understands the challenges Filipino learners face</li>
+          <li>Teaches through formal study and real-life experience</li>
+          <li>Focuses on natural pronunciation and being understood</li>
+          <li>Builds confidence for communication in everyday Japan</li>
+        </ul>
+      </div>
+    </div>
+  </Container>
+</section>

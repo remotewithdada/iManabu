@@ -1,0 +1,6 @@
+---
+import Container from "../Container.astro";
+import Button from "../Button.astro";
+import { courses } from "../../data/courses";
+---
+<section class="section" id="pricing" aria-labelledby="pricing-title"><Container><div class="section-heading centered"><p class="eyebrow">Accessible learning</p><h2 id="pricing-title">Professional support at a practical price.</h2><p>Current options are shown below. We will confirm the best fit and exact availability during your free consultation.</p></div><div class="pricing-grid">{courses.map(course=><article class:list={["price-card", {featured:course.featured}]}><h3>{course.name}</h3><p class="price">{course.price}</p><p>{course.notes}</p><Button href="#consultation">Request details</Button></article>)}</div></Container></section>

@@ -1,0 +1,6 @@
+---
+import Container from "../Container.astro";
+import Button from "../Button.astro";
+import { courses } from "../../data/courses";
+---
+<section class="section section-alt" id="courses" aria-labelledby="courses-title"><Container><div class="section-heading"><p class="eyebrow">Courses</p><h2 id="courses-title">Choose a learning path that fits you.</h2><p>Start with practical group learning or get focused one-to-one support.</p></div><div class="card-grid two">{courses.map(course=><article class:list={["course-card", {featured:course.featured}]}>{course.featured&&<span class="badge">Popular starting point</span>}<h3>{course.name}</h3><p>{course.description}</p><dl><div><dt>Duration</dt><dd>{course.duration}</dd></div><div><dt>Class size</dt><dd>{course.minimumStudents}</dd></div></dl><Button href="#consultation" variant="secondary">Ask about this course</Button></article>)}</div></Container></section>

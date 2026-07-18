@@ -1,10 +1,16 @@
 ---
 import Container from "./Container.astro";
+import { business } from "../data/business";
 
 const footerLinks = [
-  { label: "Courses", href: "/courses/" },
-  { label: "About", href: "/about/" },
-  { label: "Contact", href: "/contact/" },
+  { label: "About", href: "#about" }, { label: "Courses", href: "#courses" },
+  { label: "FAQ", href: "#faq" }, { label: "Contact", href: "#contact" },
+];
+
+const contactLinks = [
+  { label: "Email", href: business.contact.emailUrl },
+  { label: "Messenger", href: business.contact.messengerUrl },
+  { label: "LINE", href: business.contact.lineUrl },
 ];
 
 const year = new Date().getFullYear();
@@ -16,14 +22,16 @@ const year = new Date().getFullYear();
       <a class="brand" href="/" aria-label="iManabu home">
         <img class="brand-logo brand-logo-footer" src="/images/logo2.svg" alt="iManabu" width="1500" height="1500" />
       </a>
-      <p>Clear, confident language learning for curious students and families.</p>
+      <p>Learn Japanese naturally. Communicate confidently.</p>
     </div>
 
     <nav class="footer-nav" aria-label="Footer navigation">
-      {footerLinks.map((link) => (
-        <a href={link.href}>{link.label}</a>
-      ))}
+      {footerLinks.map((link) => <a href={link.href}>{link.label}</a>)}
     </nav>
+    <div class="footer-social" aria-label="Contact and social media">
+      {contactLinks.map((link) => <a href={link.href} target="_blank" rel="noopener noreferrer">{link.label}</a>)}
+      {business.socialMedia.map((social) => <span>{social.name}: {social.status}</span>)}
+    </div>
 
     <p class="footer-meta">&copy; {year} iManabu. All rights reserved.</p>
   </Container>

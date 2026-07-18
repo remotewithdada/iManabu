@@ -1,0 +1,11 @@
+---
+import Container from "../Container.astro";
+const faqs=[
+ ["How do I enroll?","Complete the free consultation form. We will discuss your goals, recommend a course, and explain the next steps."],
+ ["Do I need Japanese experience?","No. Complete beginners are welcome, and lessons can be adjusted to your current experience."],
+ ["What level should I start?","We will help identify a comfortable starting point during your free learning consultation."],
+ ["How do online classes work?","Classes use live online instruction with guided speaking practice, clear explanations, and direct teacher support."],
+ ["How can I choose the right course?","Tell us your goals, experience, and preferred schedule. We will recommend the most suitable option without pressure."],
+];
+---
+<section class="section" id="faq" aria-labelledby="faq-title"><Container size="narrow"><div class="section-heading centered"><p class="eyebrow">FAQ</p><h2 id="faq-title">Questions before you begin?</h2></div><div class="faq-list">{faqs.map(([question,answer])=><details><summary>{question}<span aria-hidden="true">+</span></summary><p>{answer}</p></details>)}</div></Container></section>

@@ -1,0 +1,10 @@
+---
+import Container from "../Container.astro";
+const features=[
+ ["01","Natural Pronunciation","Learn Japanese pronunciation clearly so others can understand you more easily."],
+ ["02","Real-Life Japanese","Practice expressions used in everyday conversations."],
+ ["03","Cultural Understanding","Understand not only what to say, but how Japanese communication works."],
+ ["04","Supportive Learning Environment","Build confidence through patient guidance and practice."],
+];
+---
+<section class="section section-alt" aria-labelledby="why-title"><Container><div class="section-heading"><p class="eyebrow">Why choose iManabu</p><h2 id="why-title">Learn the Japanese people actually use.</h2><p>Practical guidance for clearer, more confident communication.</p></div><div class="card-grid four">{features.map(([number,title,description])=><article class="feature-card"><span class="card-number">{number}</span><h3>{title}</h3><p>{description}</p></article>)}</div></Container></section>

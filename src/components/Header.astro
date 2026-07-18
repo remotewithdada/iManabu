@@ -3,21 +3,23 @@ import Button from "./Button.astro";
 import Container from "./Container.astro";
 
 const navItems = [
-  { label: "Courses", href: "/courses/" },
-  { label: "About", href: "/about/" },
-  { label: "Pricing", href: "/pricing/" },
-  { label: "FAQ", href: "/faq/" },
-  { label: "Contact", href: "/contact/" },
+  { label: "Home", href: "#home" }, { label: "About", href: "#about" },
+  { label: "Courses", href: "#courses" }, { label: "Pricing", href: "#pricing" },
+  { label: "Schedule", href: "#schedule" }, { label: "FAQ", href: "#faq" },
+  { label: "Contact", href: "#contact" },
 ];
 ---
 
-<header class="site-header">
+<header class="site-header" data-header>
   <Container class="header-shell">
     <a class="brand" href="/" aria-label="iManabu home">
       <img class="brand-logo brand-logo-header" src="/images/logo2.svg" alt="iManabu" width="1500" height="1500" />
     </a>
 
-    <nav class="site-nav" aria-label="Primary navigation">
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" data-menu-toggle><span class="sr-only">Open menu</span><span></span><span></span><span></span></button>
+    <button class="menu-backdrop" type="button" aria-label="Close navigation" tabindex="-1" data-menu-backdrop></button>
+    <nav class="site-nav" id="primary-nav" aria-label="Primary navigation" data-nav>
+      <button class="menu-close" type="button" aria-label="Close navigation" data-menu-close><span aria-hidden="true">×</span></button>
       <ul class="nav-list">
         {navItems.map((item) => (
           <li>
@@ -27,6 +29,57 @@ const navItems = [
       </ul>
     </nav>
 
-    <Button class="header-action" href="/contact/" size="sm">Book a trial</Button>
+    <Button class="header-action" href="#consultation" size="sm">Book Free Consultation</Button>
   </Container>
 </header>
+<script>
+  const header = document.querySelector('[data-header]');
+  const toggle = document.querySelector('[data-menu-toggle]');
+  const nav = document.querySelector('[data-nav]');
+  const backdrop = document.querySelector('[data-menu-backdrop]');
+  const closeButton = document.querySelector('[data-menu-close]');
+  let lockedScrollPosition = 0;
+
+  const updateHeader = () => header?.classList.toggle('is-scrolled', window.scrollY > 16);
+
+  const setMenuOpen = (open, restoreFocus = true) => {
+    toggle?.setAttribute('aria-expanded', String(open));
+    header?.classList.toggle('is-menu-open', open);
+    nav?.classList.toggle('is-open', open);
+    backdrop?.classList.toggle('is-open', open);
+
+    if (open) {
+      lockedScrollPosition = window.scrollY;
+      document.body.style.top = `-${lockedScrollPosition}px`;
+      document.body.classList.add('is-menu-open');
+      closeButton?.focus();
+      return;
+    }
+
+    const wasOpen = document.body.classList.contains('is-menu-open');
+    document.body.classList.remove('is-menu-open');
+    document.body.style.removeProperty('top');
+    if (wasOpen) window.scrollTo(0, lockedScrollPosition);
+    if (wasOpen && restoreFocus) toggle?.focus();
+  };
+
+  updateHeader();
+  window.addEventListener('scroll', updateHeader, { passive: true });
+  toggle?.addEventListener('click', () => setMenuOpen(toggle.getAttribute('aria-expanded') !== 'true'));
+  closeButton?.addEventListener('click', () => setMenuOpen(false));
+  backdrop?.addEventListener('click', () => setMenuOpen(false));
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && nav?.classList.contains('is-open')) setMenuOpen(false);
+  });
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 900 && nav?.classList.contains('is-open')) setMenuOpen(false, false);
+  });
+  nav?.querySelectorAll('a').forEach((link) => link.addEventListener('click', (event) => {
+    if (!nav.classList.contains('is-open')) return;
+    const target = document.querySelector(link.hash);
+    if (!target) return;
+    event.preventDefault();
+    setMenuOpen(false, false);
+    requestAnimationFrame(() => target.scrollIntoView({ behavior: 'smooth', block: 'start' }));
+  }));
+</script>

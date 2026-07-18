@@ -1,0 +1,30 @@
+---
+import Button from "../Button.astro";
+import Container from "../Container.astro";
+import { business } from "../../data/business";
+
+const { hero } = business.images;
+---
+
+<section class="hero" id="home" aria-labelledby="hero-title">
+  <Container class="hero-grid" size="wide">
+    <div>
+      <p class="eyebrow">Japanese for real life</p>
+      <h1 id="hero-title">Learn Japanese Naturally.<br /><span>Communicate Confidently.</span></h1>
+      <p class="hero-lede">Build practical Japanese skills through real conversations, clear pronunciation guidance, and lessons inspired by real experiences living between Japan and the Philippines.</p>
+      <div class="hero-actions">
+        <Button href="#consultation">Book Your FREE Japanese Learning Consultation</Button>
+        <Button href="#courses" variant="secondary">Explore Courses</Button>
+      </div>
+      <ul class="trust-list" aria-label="What you can expect">
+        <li>Practical Japanese</li>
+        <li>Real-life communication</li>
+        <li>Supportive guidance</li>
+        <li>Beginner friendly</li>
+      </ul>
+    </div>
+    <div class="hero-art">
+      <img class="hero-image" src={hero.src} alt={hero.alt} width={hero.width} height={hero.height} />
+    </div>
+  </Container>
+</section>
