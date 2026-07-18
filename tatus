@@ -1,0 +1,13 @@
+warning: in the working copy of 'astro.config.mjs', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/components/Footer.astro', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/components/Header.astro', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/layouts/BaseLayout.astro', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/pages/index.astro', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/styles/global.css', LF will be replaced by CRLF the next time Git touches it
+ astro.config.mjs             |  12 [32m+[m[31m-[m
+ src/components/Footer.astro  |   8 [32m+[m[31m-[m
+ src/components/Header.astro  |  25 [32m+[m[31m-[m
+ src/layouts/BaseLayout.astro |   4 [32m+[m[31m-[m
+ src/pages/index.astro        | 114 [32m+[m[31m--------[m
+ src/styles/global.css        | 583 [32m+[m[31m------------------------------------------[m
+ 6 files changed, 48 insertions(+), 698 deletions(-)
