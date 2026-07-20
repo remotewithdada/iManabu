@@ -1,12 +1,25 @@
 ---
 import Container from "../Container.astro";
+import Button from "../Button.astro";
 import { business } from "../../data/business";
 
 const channels = [
   { title: "Email", label: business.contact.email, href: business.contact.emailUrl },
-  { title: "Facebook Page", label: "Visit the iManabu Facebook Page", href: business.contact.facebookUrl },
-  { title: "Messenger", label: business.contact.messengerLabel, href: business.contact.messengerUrl },
-  { title: "LINE", label: business.contact.lineLabel, href: business.contact.lineUrl },
+  {
+    title: "Facebook Page",
+    label: "Visit iManabu on Facebook",
+    href: business.contact.facebookUrl,
+  },
+  {
+    title: "Messenger",
+    label: business.contact.messengerLabel,
+    href: business.contact.messengerUrl,
+  },
+  {
+    title: "LINE",
+    label: business.contact.lineLabel,
+    href: business.contact.lineUrl,
+  },
 ];
 ---
 
@@ -14,8 +27,8 @@ const channels = [
   <Container>
     <div class="section-heading">
       <p class="eyebrow">Contact</p>
-      <h2 id="contact-title">Let’s talk about your Japanese goals.</h2>
-      <p>Choose the channel that is most comfortable for you.</p>
+      <h2 id="contact-title">Let’s talk about your language goals.</h2>
+      <p>Choose the contact method that is most convenient for you.</p>
     </div>
     <div class="contact-grid">
       {channels.map((channel) => (
@@ -23,17 +36,24 @@ const channels = [
           <span aria-hidden="true">↗</span>
           <div>
             <h3>{channel.title}</h3>
-            <p><a href={channel.href} target="_blank" rel="noopener noreferrer">{channel.label}</a></p>
+            <p>
+              <a href={channel.href} target={channel.title === "Email" ? undefined : "_blank"} rel={channel.title === "Email" ? undefined : "noopener noreferrer"}>
+                {channel.label}
+              </a>
+            </p>
           </div>
         </div>
       ))}
-      <div class="contact-item">
+      <div class="contact-item social-placeholders">
         <span aria-hidden="true">•</span>
         <div>
-          <h3>Social Media</h3>
+          <h3>More Social Channels</h3>
           {business.socialMedia.map((social) => <p>{social.name}: {social.status}</p>)}
         </div>
       </div>
+    </div>
+    <div class="section-cta contact-cta">
+      <Button href="#consultation">Get Started Today</Button>
     </div>
   </Container>
 </section>

@@ -1,11 +1,38 @@
 ---
 import Container from "../Container.astro";
-const faqs=[
- ["How do I enroll?","Complete the free consultation form. We will discuss your goals, recommend a course, and explain the next steps."],
- ["Do I need Japanese experience?","No. Complete beginners are welcome, and lessons can be adjusted to your current experience."],
- ["What level should I start?","We will help identify a comfortable starting point during your free learning consultation."],
- ["How do online classes work?","Classes use live online instruction with guided speaking practice, clear explanations, and direct teacher support."],
- ["How can I choose the right course?","Tell us your goals, experience, and preferred schedule. We will recommend the most suitable option without pressure."],
+import Button from "../Button.astro";
+
+const faqs = [
+  ["Do you teach beginners?", "Yes. Complete beginners are welcome in Japanese and English lessons. We will start at a comfortable level and build skills step by step."],
+  ["What can I study in Japanese lessons?", "Japanese lessons can focus on practical conversation, grammar, kanji, speaking, everyday Japanese, and personalized support for beginners."],
+  ["Do you prepare students for EIKEN?", "Yes. EIKEN preparation is available through private English lessons with personalized practice and support."],
+  ["Do you teach children?", "Yes. Children can take private English lessons, including conversation, homework support, and EIKEN preparation. We also welcome families to ask about Japanese lesson options."],
+  ["Are lessons online?", "Yes. All iManabu lessons are taught online, so students can learn from home in Japan, the Philippines, or elsewhere."],
+  ["What languages does the teacher speak?", "Teacher Hidemi speaks native Japanese, English, and Filipino (Tagalog), making it easier to explain ideas clearly and support multilingual families."],
+  ["Can I switch between Japanese and English lessons?", "Yes. Tell us when your goals change, and we can discuss the most suitable Japanese or English private lesson plan. Group-class changes depend on current availability."],
+  ["How long is each lesson?", "Lesson length can vary by course, learner age, and goal. We will explain the available durations and recommend a good fit during your free consultation."],
+  ["What platform do you use?", "Lessons use a live online video platform. We will confirm the platform and send simple joining instructions before your first lesson."],
+  ["How do I book a consultation?", "Complete the free consultation form on this page. Share the course you are interested in, your goal, and preferred schedule, and iManabu will contact you with the next steps."],
 ];
 ---
-<section class="section" id="faq" aria-labelledby="faq-title"><Container size="narrow"><div class="section-heading centered"><p class="eyebrow">FAQ</p><h2 id="faq-title">Questions before you begin?</h2></div><div class="faq-list">{faqs.map(([question,answer])=><details><summary>{question}<span aria-hidden="true">+</span></summary><p>{answer}</p></details>)}</div></Container></section>
+
+<section class="section" id="faq" aria-labelledby="faq-title">
+  <Container size="narrow">
+    <div class="section-heading centered">
+      <p class="eyebrow">FAQ</p>
+      <h2 id="faq-title">Questions before you begin?</h2>
+      <p>Clear answers about Japanese lessons, English lessons, and learning online.</p>
+    </div>
+    <div class="faq-list">
+      {faqs.map(([question, answer]) => (
+        <details>
+          <summary>{question}<span aria-hidden="true">+</span></summary>
+          <p>{answer}</p>
+        </details>
+      ))}
+    </div>
+    <div class="section-cta centered faq-cta">
+      <Button href="#consultation">Book a Free Consultation</Button>
+    </div>
+  </Container>
+</section>

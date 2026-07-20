@@ -5,28 +5,19 @@ const SCRIPT_URL =
   "https://script.google.com/macros/s/AKfycbzhdkwNofswMz2oERpcVg9mHlsGWwvmZxFbVRKlGYVncdKHrLRyGSmND2qdHmnXmGBu/exec";
 ---
 
-<section
-  class="section consultation"
-  id="consultation"
-  aria-labelledby="consultation-title"
->
+<section class="section consultation" id="consultation" aria-labelledby="consultation-title">
   <Container>
     <div class="consultation-grid">
       <div>
         <p class="eyebrow light">Your next step</p>
-
-        <h2 id="consultation-title">
-          Free Japanese Learning Consultation
-        </h2>
-
+        <h2 id="consultation-title">Free Language Learning Consultation</h2>
         <p class="lead">
-          Not sure where to start? We will help you understand your current
-          level and recommend the best learning path.
+          Tell us what you want to study. We will help you understand your starting point and
+          recommend the best Japanese or English learning path.
         </p>
-
         <ul class="check-list light">
           <li>No obligation</li>
-          <li>Beginner friendly</li>
+          <li>Beginner and family friendly</li>
           <li>Personal course recommendation</li>
         </ul>
       </div>
@@ -38,72 +29,57 @@ const SCRIPT_URL =
         method="POST"
         accept-charset="UTF-8"
       >
+        <p class="required-note"><span aria-hidden="true">*</span> Required fields</p>
         <div class="form-grid">
           <label>
-            Full Name <span>*</span>
-
-            <input
-              type="text"
-              name="fullName"
-              autocomplete="name"
-              required
-            />
+            Full Name <span aria-hidden="true">*</span>
+            <input type="text" name="fullName" autocomplete="name" required />
           </label>
 
           <label>
-            Email Address <span>*</span>
-
-            <input
-              type="email"
-              name="email"
-              autocomplete="email"
-              required
-            />
+            Email Address <span aria-hidden="true">*</span>
+            <input type="email" name="email" autocomplete="email" required />
           </label>
 
           <label class="full">
-            Preferred Contact Method <span>*</span>
+            Which course are you interested in? <span aria-hidden="true">*</span>
+            <select name="courseInterest" required>
+              <option value="">Choose a course</option>
+              <option value="Japanese Group Class">Japanese Group Class</option>
+              <option value="Japanese Private Lesson">Japanese Private Lesson</option>
+              <option value="English Private Lesson">English Private Lesson</option>
+              <option value="Not Sure Yet">Not Sure Yet</option>
+            </select>
+          </label>
 
-            <select
-              name="contactMethod"
-              required
-              data-contact-method
-            >
+          <label class="full">
+            Preferred Contact Method <span aria-hidden="true">*</span>
+            <select name="contactMethod" required data-contact-method>
               <option value="">Choose a contact method</option>
               <option value="email">Email</option>
+              <option value="facebook">Facebook Page</option>
               <option value="messenger">Messenger</option>
               <option value="line">LINE</option>
             </select>
           </label>
 
-          <label
-            class="full"
-            data-messenger-field
-            hidden
-          >
-            Facebook Profile Link or Name <span>*</span>
-
+          <label class="full" data-facebook-field hidden>
+            Facebook Profile Link or Name <span aria-hidden="true">*</span>
             <input
               type="text"
               name="facebookProfile"
               placeholder="Facebook profile link or Facebook name"
               disabled
-              data-messenger-input
+              data-facebook-input
             />
-
             <small class="form-helper">
-              If you do not know your profile link, enter your Facebook name
-              and briefly describe your profile picture.
+              If you do not know your profile link, enter your Facebook name and briefly
+              describe your profile picture.
             </small>
           </label>
 
-          <label
-            class="full"
-            data-line-field
-            hidden
-          >
-            LINE ID or Profile Link <span>*</span>
-
+          <label class="full" data-line-field hidden>
+            LINE ID or Profile Link <span aria-hidden="true">*</span>
             <input
               type="text"
               name="lineProfile"
@@ -111,36 +87,28 @@ const SCRIPT_URL =
               disabled
               data-line-input
             />
-
             <small class="form-helper">
-              Enter the LINE ID or profile link where we can contact you.
+              Enter the LINE ID or profile link where Teacher Hidemi can contact you.
             </small>
           </label>
 
           <label>
-            Learning Goal <span>*</span>
-
-            <select
-              name="learningGoal"
-              required
-            >
+            Learning Goal <span aria-hidden="true">*</span>
+            <select name="learningGoal" required>
               <option value="">Choose your learning goal</option>
               <option value="Work in Japan">Work in Japan</option>
-              <option value="Daily Conversation">Daily Conversation</option>
-              <option value="Travel">Travel</option>
-              <option value="JLPT Preparation">JLPT Preparation</option>
+              <option value="Japanese Conversation">Japanese Conversation</option>
+              <option value="Practical Japanese">Practical Japanese</option>
+              <option value="English Conversation">English Conversation</option>
+              <option value="EIKEN Preparation">EIKEN Preparation</option>
               <option value="Support My Child">Support My Child</option>
               <option value="Other">Other</option>
             </select>
           </label>
 
           <label>
-            Current Japanese Level <span>*</span>
-
-            <select
-              name="level"
-              required
-            >
+            Current Language Level <span aria-hidden="true">*</span>
+            <select name="level" required>
               <option value="">Choose your level</option>
               <option value="Beginner">Beginner</option>
               <option value="Elementary">Elementary</option>
@@ -151,7 +119,6 @@ const SCRIPT_URL =
 
           <label class="full">
             Preferred Schedule
-
             <input
               type="text"
               name="schedule"
@@ -161,7 +128,6 @@ const SCRIPT_URL =
 
           <label class="full">
             Additional Notes
-
             <textarea
               name="notes"
               rows="4"
@@ -169,10 +135,9 @@ const SCRIPT_URL =
             ></textarea>
           </label>
 
-          <!-- Spam honeypot: real visitors should leave this empty -->
+          <!-- Spam honeypot: real visitors should leave this empty. -->
           <label hidden aria-hidden="true">
             Website
-
             <input
               type="text"
               name="website"
@@ -183,19 +148,10 @@ const SCRIPT_URL =
           </label>
         </div>
 
-        <button
-          class="button button-primary button-md"
-          type="submit"
-          data-submit-button
-        >
+        <button class="button button-primary button-md" type="submit" data-submit-button>
           Request My Free Consultation
         </button>
-
-        <p
-          id="form-message"
-          role="status"
-          aria-live="polite"
-        ></p>
+        <p id="form-message" role="status" aria-live="polite"></p>
       </form>
     </div>
   </Container>
@@ -203,33 +159,20 @@ const SCRIPT_URL =
 
 <script>
   const initializeConsultationForm = () => {
-    const form =
-      document.querySelector<HTMLFormElement>("#consultation-form");
+    const form = document.querySelector<HTMLFormElement>("#consultation-form");
 
-    if (!form || form.dataset.initialized === "true") {
-      return;
-    }
-
+    if (!form || form.dataset.initialized === "true") return;
     form.dataset.initialized = "true";
 
-    const message =
-      form.querySelector<HTMLParagraphElement>("#form-message");
-    const submitButton =
-      form.querySelector<HTMLButtonElement>("[data-submit-button]");
-    const contactMethod =
-      form.querySelector<HTMLSelectElement>("[data-contact-method]");
-    const messengerField =
-      form.querySelector<HTMLElement>("[data-messenger-field]");
-    const messengerInput =
-      form.querySelector<HTMLInputElement>("[data-messenger-input]");
-    const lineField =
-      form.querySelector<HTMLElement>("[data-line-field]");
-    const lineInput =
-      form.querySelector<HTMLInputElement>("[data-line-input]");
-
+    const message = form.querySelector<HTMLParagraphElement>("#form-message");
+    const submitButton = form.querySelector<HTMLButtonElement>("[data-submit-button]");
+    const contactMethod = form.querySelector<HTMLSelectElement>("[data-contact-method]");
+    const facebookField = form.querySelector<HTMLElement>("[data-facebook-field]");
+    const facebookInput = form.querySelector<HTMLInputElement>("[data-facebook-input]");
+    const lineField = form.querySelector<HTMLElement>("[data-line-field]");
+    const lineInput = form.querySelector<HTMLInputElement>("[data-line-input]");
     const originalButtonText =
-      submitButton?.textContent?.trim() ||
-      "Request My Free Consultation";
+      submitButton?.textContent?.trim() || "Request My Free Consultation";
     let isSubmitting = false;
 
     const updateConditionalField = (
@@ -238,91 +181,68 @@ const SCRIPT_URL =
       shouldShow: boolean
     ) => {
       field?.toggleAttribute("hidden", !shouldShow);
-
-      if (!input) {
-        return;
-      }
-
+      if (!input) return;
       input.disabled = !shouldShow;
       input.required = shouldShow;
-
-      if (!shouldShow) {
-        input.value = "";
-      }
+      if (!shouldShow) input.value = "";
     };
 
-    const updateContactFields = () => {
+    const updateContactField = () => {
       const selectedMethod = contactMethod?.value;
-
       updateConditionalField(
-        messengerField,
-        messengerInput,
-        selectedMethod === "messenger"
+        facebookField,
+        facebookInput,
+        selectedMethod === "facebook" || selectedMethod === "messenger"
       );
-      updateConditionalField(
-        lineField,
-        lineInput,
-        selectedMethod === "line"
-      );
+      updateConditionalField(lineField, lineInput, selectedMethod === "line");
     };
 
-    contactMethod?.addEventListener("change", updateContactFields);
+    contactMethod?.addEventListener("change", updateContactField);
 
     form.addEventListener("submit", async (event) => {
       event.preventDefault();
-      updateContactFields();
+      updateContactField();
 
-      if (!form.reportValidity() || isSubmitting) {
-        return;
-      }
-
+      if (!form.reportValidity() || isSubmitting) return;
       isSubmitting = true;
 
       if (submitButton) {
         submitButton.disabled = true;
         submitButton.textContent = "Sending...";
       }
-
       if (message) {
+        message.classList.remove("is-success", "is-error");
         message.textContent = "Sending your request...";
       }
 
       const formData = new FormData(form);
       const body = new URLSearchParams();
-
       formData.forEach((value, key) => {
-        if (typeof value === "string") {
-          body.append(key, value);
-        }
+        if (typeof value === "string") body.append(key, value);
       });
 
       try {
-        // Apps Script is cross-origin. no-cors lets the browser dispatch the POST, but the
-        // response is opaque: the frontend cannot read its JSON or verify the sheet row.
-        // The success message therefore confirms dispatch only.
-        await fetch(form.action, {
-          method: "POST",
-          mode: "no-cors",
-          body
-        });
-
+        // Apps Script is cross-origin. The opaque response confirms dispatch only.
+        await fetch(form.action, { method: "POST", mode: "no-cors", body });
         if (message) {
-          message.textContent =
-            "Thank you! Your consultation request has been sent.";
+          message.classList.add("is-success");
+          message.textContent = [
+            "Thank you! We've received your consultation request.",
+            "Teacher Hidemi will review your information and contact you soon.",
+            "Please check your email (and Spam folder just in case) for future updates.",
+          ].join("\n\n");
         }
-
         form.reset();
-        updateContactFields();
+        updateContactField();
       } catch (error) {
         console.error("Consultation form error:", error);
-
         if (message) {
+          message.classList.add("is-error");
           message.textContent =
-            "Something went wrong. Please check your connection and try again.";
+            "We couldn't send your request. Please check your connection and try again, or contact us directly by email, Messenger, or LINE.";
         }
       } finally {
         isSubmitting = false;
-
         if (submitButton) {
           submitButton.disabled = false;
           submitButton.textContent = originalButtonText;
@@ -330,7 +250,7 @@ const SCRIPT_URL =
       }
     });
 
-    updateContactFields();
+    updateContactField();
   };
 
   initializeConsultationForm();

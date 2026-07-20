@@ -4,27 +4,48 @@ import Container from "../Container.astro";
 import { business } from "../../data/business";
 
 const { hero } = business.images;
+const lessonBadges = [
+  "Japanese Lessons",
+  "English Lessons",
+  "One-on-One Lessons",
+  "Japanese Group Classes",
+  "Online Learning",
+];
 ---
 
 <section class="hero" id="home" aria-labelledby="hero-title">
   <Container class="hero-grid" size="wide">
-    <div>
-      <p class="eyebrow">Japanese for real life</p>
-      <h1 id="hero-title">Learn Japanese Naturally.<br /><span>Communicate Confidently.</span></h1>
-      <p class="hero-lede">Build practical Japanese skills through real conversations, clear pronunciation guidance, and lessons inspired by real experiences living between Japan and the Philippines.</p>
+    <div class="hero-copy">
+      <p class="eyebrow">Online language school</p>
+      <h1 id="hero-title">Learn Japanese or English <span>with Confidence</span></h1>
+      <p class="hero-lede">
+        Personalized online language lessons designed for Filipinos, Japanese learners,
+        children, and families.
+      </p>
+      <p class="hero-support">
+        Whether you're preparing for life in Japan, improving your conversational Japanese,
+        or studying for EIKEN, iManabu helps you reach your goals through practical, engaging, and
+        personalized lessons.
+      </p>
       <div class="hero-actions">
-        <Button href="#consultation">Book Your FREE Japanese Learning Consultation</Button>
-        <Button href="#courses" variant="secondary">Explore Courses</Button>
+        <Button href="#consultation">Book a Free Consultation</Button>
+        <Button href="#courses" variant="secondary">View Our Courses</Button>
       </div>
-      <ul class="trust-list" aria-label="What you can expect">
-        <li>Practical Japanese</li>
-        <li>Real-life communication</li>
-        <li>Supportive guidance</li>
-        <li>Beginner friendly</li>
+      <ul class="trust-list" aria-label="Available lessons and features">
+        {lessonBadges.map((badge) => (
+          <li>{badge}</li>
+        ))}
       </ul>
     </div>
     <div class="hero-art">
-      <img class="hero-image" src={hero.src} alt={hero.alt} width={hero.width} height={hero.height} />
+      <img
+        class="hero-image"
+        src={hero.src}
+        alt={hero.alt}
+        width={hero.width}
+        height={hero.height}
+        fetchpriority="high"
+      />
     </div>
   </Container>
 </section>

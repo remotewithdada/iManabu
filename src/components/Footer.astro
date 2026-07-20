@@ -3,14 +3,19 @@ import Container from "./Container.astro";
 import { business } from "../data/business";
 
 const footerLinks = [
-  { label: "About", href: "#about" }, { label: "Courses", href: "#courses" },
-  { label: "FAQ", href: "#faq" }, { label: "Contact", href: "#contact" },
+  { label: "About", href: "#about" },
+  { label: "Courses", href: "#courses" },
+  { label: "Pricing", href: "#pricing" },
+  { label: "Testimonials", href: "#testimonials" },
+  { label: "FAQ", href: "#faq" },
+  { label: "Contact", href: "#contact" },
 ];
 
 const contactLinks = [
-  { label: "Email", href: business.contact.emailUrl },
-  { label: "Messenger", href: business.contact.messengerUrl },
-  { label: "LINE", href: business.contact.lineUrl },
+  { label: `Email: ${business.contact.email}`, href: business.contact.emailUrl, external: false },
+  { label: "Facebook", href: business.contact.facebookUrl, external: true },
+  { label: "Messenger", href: business.contact.messengerUrl, external: true },
+  { label: "LINE", href: business.contact.lineUrl, external: true },
 ];
 
 const year = new Date().getFullYear();
@@ -20,16 +25,33 @@ const year = new Date().getFullYear();
   <Container class="footer-shell">
     <div class="footer-brand">
       <a class="brand" href="/" aria-label="iManabu home">
-        <img class="brand-logo brand-logo-footer" src="/images/logo2.svg" alt="iManabu" width="1500" height="1500" />
+        <img
+          class="brand-logo brand-logo-footer"
+          src="/images/logo2.svg"
+          alt="iManabu"
+          width="1500"
+          height="1500"
+        />
       </a>
-      <p>Learn Japanese naturally. Communicate confidently.</p>
+      <p>
+        Japanese lessons, English lessons, and personalized online learning that help every
+        student communicate with confidence.
+      </p>
     </div>
 
     <nav class="footer-nav" aria-label="Footer navigation">
       {footerLinks.map((link) => <a href={link.href}>{link.label}</a>)}
     </nav>
-    <div class="footer-social" aria-label="Contact and social media">
-      {contactLinks.map((link) => <a href={link.href} target="_blank" rel="noopener noreferrer">{link.label}</a>)}
+    <div class="footer-social" aria-label="Contact information">
+      {contactLinks.map((link) => (
+        <a
+          href={link.href}
+          target={link.external ? "_blank" : undefined}
+          rel={link.external ? "noopener noreferrer" : undefined}
+        >
+          {link.label}
+        </a>
+      ))}
       {business.socialMedia.map((social) => <span>{social.name}: {social.status}</span>)}
     </div>
 

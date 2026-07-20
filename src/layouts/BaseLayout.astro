@@ -9,19 +9,49 @@ interface Props {
 }
 
 const {
-  title = "iManabu - Learn Smarter",
-  description = "iManabu helps learners study smarter with simple and effective tools.",
+  title = "iManabu | Japanese & English Lessons Online",
+  description =
+    "Practical Japanese lessons online and private English lessons online for children, adults, families, beginners, and EIKEN students at iManabu.",
 } = Astro.props;
+
+const siteUrl = new URL("https://imanabu.online/");
+const canonicalUrl = new URL(Astro.url.pathname, siteUrl);
+const openGraphImage = new URL("/images/hero.png", siteUrl);
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "EducationalOrganization",
+  "@id": `${siteUrl.href}#organization`,
+  name: "iManabu",
+  url: siteUrl.href,
+  email: "contact@imanabu.online",
+  description,
+  sameAs: ["https://www.facebook.com/iManabu.online/"],
+  areaServed: ["Japan", "Philippines"],
+};
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
+    <meta name="theme-color" content="#0f4c3a" />
+    <link rel="canonical" href={canonicalUrl} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="iManabu" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={openGraphImage} />
+    <meta property="og:image:alt" content="An iManabu online language lesson" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={openGraphImage} />
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
     <title>{title}</title>
   </head>
   <body>

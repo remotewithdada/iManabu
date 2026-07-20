@@ -1,24 +1,62 @@
 ---
 import Container from "../Container.astro";
+import Button from "../Button.astro";
 import { business } from "../../data/business";
 
 const { teacher } = business.images;
+const specialties = [
+  "Japanese Beginner Lessons",
+  "Personalized Japanese Lessons",
+  "Daily Conversation",
+  "English Conversation",
+  "Children's English",
+  "Homework Support",
+  "EIKEN Preparation",
+];
+const languages = ["Japanese (Native)", "English", "Filipino (Tagalog)"];
 ---
 
-<section class="section teacher-section" aria-labelledby="teacher-title">
+<section class="section teacher-section" id="teacher" aria-labelledby="teacher-title">
   <Container>
     <div class="teacher-grid">
-      <img class="teacher-portrait" src={teacher.src} alt={teacher.alt} width={teacher.width} height={teacher.height} />
-      <div>
-        <p class="eyebrow">Meet your teacher</p>
-        <h2 id="teacher-title">Learn from someone who understands the journey.</h2>
-        <p class="lead">With a Japanese-Filipino background and experience studying and living between Japan and the Philippines, Teacher Hidemi understands both the language and the adjustment behind learning it.</p>
-        <ul class="check-list">
-          <li>Understands the challenges Filipino learners face</li>
-          <li>Teaches through formal study and real-life experience</li>
-          <li>Focuses on natural pronunciation and being understood</li>
-          <li>Builds confidence for communication in everyday Japan</li>
+      <img
+        class="teacher-portrait"
+        src={teacher.src}
+        alt={teacher.alt}
+        width={teacher.width}
+        height={teacher.height}
+        loading="lazy"
+      />
+      <div class="teacher-content">
+        <p class="eyebrow">Meet the teacher</p>
+        <h2 id="teacher-title">Teacher Hidemi</h2>
+        <p class="teacher-intro">
+          Teacher Hidemi is a Japanese teacher and an English teacher born in Tokyo, based in
+          Saitama, with more than 10 years of teaching experience. She creates a warm, practical space where children
+          and adults can ask questions, practice comfortably, and grow in confidence.
+        </p>
+        <ul class="teacher-facts" aria-label="Teacher profile">
+          <li><strong>Born</strong><span>Tokyo, Japan</span></li>
+          <li><strong>Based</strong><span>Saitama, Japan</span></li>
+          <li><strong>Experience</strong><span>10+ years teaching</span></li>
         </ul>
+        <div class="teacher-details">
+          <div>
+            <h3>Teaching Specialties</h3>
+            <ul class="specialty-list">
+              {specialties.map((specialty) => <li>{specialty}</li>)}
+            </ul>
+          </div>
+          <aside class="language-card" aria-labelledby="languages-title">
+            <h3 id="languages-title">Languages Spoken</h3>
+            <ul>
+              {languages.map((language) => <li>{language}</li>)}
+            </ul>
+          </aside>
+        </div>
+        <div class="section-cta teacher-cta">
+          <Button href="#consultation" variant="secondary">Learn with Teacher Hidemi</Button>
+        </div>
       </div>
     </div>
   </Container>

@@ -1,6 +1,74 @@
 ---
 import Container from "../Container.astro";
 import Button from "../Button.astro";
-import { courses } from "../../data/courses";
+import { courses, type CourseLanguage } from "../../data/courses";
+
+const courseGroups: { language: CourseLanguage; note: string }[] = [
+  {
+    language: "Japanese",
+    note: "Group and private Japanese lessons for beginners, everyday communication, and practical language goals.",
+  },
+  {
+    language: "English",
+    note: "Private English lessons only, personalized for children, adults, and EIKEN learners.",
+  },
+];
 ---
-<section class="section section-alt" id="courses" aria-labelledby="courses-title"><Container><div class="section-heading"><p class="eyebrow">Courses</p><h2 id="courses-title">Choose a learning path that fits you.</h2><p>Start with practical group learning or get focused one-to-one support.</p></div><div class="card-grid two">{courses.map(course=><article class:list={["course-card", {featured:course.featured}]}>{course.featured&&<span class="badge">Popular starting point</span>}<h3>{course.name}</h3><p>{course.description}</p><dl><div><dt>Duration</dt><dd>{course.duration}</dd></div><div><dt>Class size</dt><dd>{course.minimumStudents}</dd></div></dl><Button href="#consultation" variant="secondary">Ask about this course</Button></article>)}</div></Container></section>
+
+<section class="section section-alt" id="courses" aria-labelledby="courses-title">
+  <Container>
+    <div class="section-heading">
+      <p class="eyebrow">Courses</p>
+      <h2 id="courses-title">What would you like to study?</h2>
+      <p>Choose Japanese or English, then find the lesson format that fits your goals.</p>
+    </div>
+
+    <div class="course-groups">
+      {courseGroups.map((group) => (
+        <section class="course-group" aria-labelledby={`${group.language.toLowerCase()}-courses-title`}>
+          <div class="course-group-heading">
+            <p class="language-kicker">{group.language}</p>
+            <h3 id={`${group.language.toLowerCase()}-courses-title`}>
+              {group.language} Lessons
+            </h3>
+            <p>{group.note}</p>
+          </div>
+          <div class:list={["course-card-grid", { single: group.language === "English" }]}>
+            {courses.filter((course) => course.language === group.language).map((course) => (
+              <article class:list={["course-card", { featured: course.featured }]}>
+                <div class="course-card-topline">
+                  <span class="badge">{course.format} lessons</span>
+                  {course.language === "English" && <span class="private-only">Private only</span>}
+                </div>
+                <h4>{course.name}</h4>
+                <p>{course.description}</p>
+                <div class="course-price" aria-label={`Starts from ${course.yenPrice} or ${course.pesoPrice}`}>
+                  <span>Starts from</span>
+                  <strong>{course.yenPrice}</strong>
+                  <span class="price-separator">or</span>
+                  <strong>{course.pesoPrice}</strong>
+                  {course.priceQualifier && <small>{course.priceQualifier}</small>}
+                </div>
+                <div class="topic-block">
+                  <h5>{course.topicLabel}</h5>
+                  <ul class="tag-list">
+                    {course.topics.map((topic) => <li>{topic}</li>)}
+                  </ul>
+                </div>
+                <dl>
+                  <div>
+                    <dt>Class size</dt>
+                    <dd>{course.classSize}</dd>
+                  </div>
+                </dl>
+                <Button href="#consultation" variant="secondary">
+                  {course.language === "Japanese" ? "Enroll in Japanese Lessons" : "Book an English Lesson"}
+                </Button>
+              </article>
+            ))}
+          </div>
+        </section>
+      ))}
+    </div>
+  </Container>
+</section>

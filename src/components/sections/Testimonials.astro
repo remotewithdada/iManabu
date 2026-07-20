@@ -1,0 +1,36 @@
+---
+import Container from "../Container.astro";
+import Button from "../Button.astro";
+
+// Replace individual entries with verified student feedback when it becomes available.
+const testimonials = Array.from({ length: 6 }, (_, index) => ({
+  id: `testimonial-placeholder-${index + 1}`,
+  status: "Coming Soon",
+  quote:
+    "We're excited to help students achieve their language goals. Real student testimonials will appear here soon.",
+}));
+---
+
+<section class="section testimonials-section" id="testimonials" aria-labelledby="testimonials-title">
+  <Container>
+    <div class="section-heading centered">
+      <p class="eyebrow">Testimonials</p>
+      <h2 id="testimonials-title">Student stories are coming soon.</h2>
+      <p>We are preparing this space for genuine feedback from iManabu learners and families.</p>
+    </div>
+    <div class="testimonial-grid">
+      {testimonials.map((testimonial) => (
+        <article class="testimonial-card" id={testimonial.id}>
+          <div class="stars" aria-label="Testimonial placeholder">
+            <span aria-hidden="true">★★★★★</span>
+          </div>
+          <h3>{testimonial.status}</h3>
+          <p>“{testimonial.quote}”</p>
+        </article>
+      ))}
+    </div>
+    <div class="section-cta centered">
+      <Button href="#consultation">Become Our Next Success Story</Button>
+    </div>
+  </Container>
+</section>

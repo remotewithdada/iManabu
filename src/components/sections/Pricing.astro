@@ -3,4 +3,35 @@ import Container from "../Container.astro";
 import Button from "../Button.astro";
 import { courses } from "../../data/courses";
 ---
-<section class="section" id="pricing" aria-labelledby="pricing-title"><Container><div class="section-heading centered"><p class="eyebrow">Accessible learning</p><h2 id="pricing-title">Professional support at a practical price.</h2><p>Current options are shown below. We will confirm the best fit and exact availability during your free consultation.</p></div><div class="pricing-grid">{courses.map(course=><article class:list={["price-card", {featured:course.featured}]}><h3>{course.name}</h3><p class="price">{course.price}</p><p>{course.notes}</p><Button href="#consultation">Request details</Button></article>)}</div></Container></section>
+
+<section class="section" id="pricing" aria-labelledby="pricing-title">
+  <Container>
+    <div class="section-heading centered">
+      <p class="eyebrow">Simple starting prices</p>
+      <h2 id="pricing-title">Choose the support that fits you.</h2>
+      <p>
+        Prices start from the amounts below. We will confirm the lesson plan, schedule, and
+        any future promotional offer during your free consultation.
+      </p>
+    </div>
+    <div class="pricing-grid">
+      {courses.map((course) => (
+        <article class:list={["price-card", { featured: course.featured }]}>
+          <p class="price-language">{course.language}</p>
+          <h3>{course.format}</h3>
+          <p class="price-label">Starts from</p>
+          <div class="price-values">
+            <strong>{course.yenPrice}</strong>
+            <span>or</span>
+            <strong>{course.pesoPrice}</strong>
+          </div>
+          <p class="price-qualifier">{course.priceQualifier ?? "per private lesson"}</p>
+          <div class="promotion-space" aria-label="Future promotional pricing space">
+            Current starting price
+          </div>
+          <Button href="#consultation">Reserve Your Spot</Button>
+        </article>
+      ))}
+    </div>
+  </Container>
+</section>

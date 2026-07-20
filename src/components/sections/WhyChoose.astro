@@ -1,10 +1,36 @@
 ---
 import Container from "../Container.astro";
-const features=[
- ["01","Natural Pronunciation","Learn Japanese pronunciation clearly so others can understand you more easily."],
- ["02","Real-Life Japanese","Practice expressions used in everyday conversations."],
- ["03","Cultural Understanding","Understand not only what to say, but how Japanese communication works."],
- ["04","Supportive Learning Environment","Build confidence through patient guidance and practice."],
+import Button from "../Button.astro";
+
+const features = [
+  ["01", "Personalized Lesson Plans", "Lessons shaped around your goals, level, pace, and interests."],
+  ["02", "Multilingual Teacher", "Ask questions in Japanese, English, or Filipino (Tagalog)."],
+  ["03", "Practical Conversation", "Practice useful language for school, work, family, and everyday life."],
+  ["04", "Flexible Online Schedule", "Learn online from home with lesson times discussed during consultation."],
+  ["05", "Beginner Friendly", "Start with patient explanations and steady, confidence-building practice."],
+  ["06", "Japanese for Beginners", "Build a strong foundation through clear, practical Japanese lessons."],
+  ["07", "EIKEN Support", "Build English confidence with focused preparation for EIKEN."],
 ];
 ---
-<section class="section section-alt" aria-labelledby="why-title"><Container><div class="section-heading"><p class="eyebrow">Why choose iManabu</p><h2 id="why-title">Learn the Japanese people actually use.</h2><p>Practical guidance for clearer, more confident communication.</p></div><div class="card-grid four">{features.map(([number,title,description])=><article class="feature-card"><span class="card-number">{number}</span><h3>{title}</h3><p>{description}</p></article>)}</div></Container></section>
+
+<section class="section section-alt" aria-labelledby="why-title">
+  <Container>
+    <div class="section-heading">
+      <p class="eyebrow">Why choose iManabu</p>
+      <h2 id="why-title">Personal support for practical progress.</h2>
+      <p>Friendly, focused online lessons that help each learner move forward with confidence.</p>
+    </div>
+    <div class="feature-grid">
+      {features.map(([number, title, description]) => (
+        <article class="feature-card">
+          <span class="card-number" aria-hidden="true">{number}</span>
+          <h3>{title}</h3>
+          <p>{description}</p>
+        </article>
+      ))}
+    </div>
+    <div class="section-cta">
+      <Button href="#consultation">Find the Right Course</Button>
+    </div>
+  </Container>
+</section>

@@ -3,9 +3,9 @@ import Button from "./Button.astro";
 import Container from "./Container.astro";
 
 const navItems = [
-  { label: "Home", href: "#home" }, { label: "About", href: "#about" },
+  { label: "About", href: "#about" }, { label: "Teacher", href: "#teacher" },
   { label: "Courses", href: "#courses" }, { label: "Pricing", href: "#pricing" },
-  { label: "Schedule", href: "#schedule" }, { label: "FAQ", href: "#faq" },
+  { label: "Testimonials", href: "#testimonials" }, { label: "FAQ", href: "#faq" },
   { label: "Contact", href: "#contact" },
 ];
 ---
@@ -29,7 +29,7 @@ const navItems = [
       </ul>
     </nav>
 
-    <Button class="header-action" href="#consultation" size="sm">Book Free Consultation</Button>
+    <Button class="header-action" href="#consultation" size="sm">Book a Free Consultation</Button>
   </Container>
 </header>
 <script>
@@ -72,7 +72,7 @@ const navItems = [
     if (event.key === 'Escape' && nav?.classList.contains('is-open')) setMenuOpen(false);
   });
   window.addEventListener('resize', () => {
-    if (window.innerWidth > 900 && nav?.classList.contains('is-open')) setMenuOpen(false, false);
+    if (window.innerWidth > 1040 && nav?.classList.contains('is-open')) setMenuOpen(false, false);
   });
   nav?.querySelectorAll('a').forEach((link) => link.addEventListener('click', (event) => {
     if (!nav.classList.contains('is-open')) return;
